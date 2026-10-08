@@ -1,0 +1,61 @@
+name: forest_ranger_nav
+description: Forest Ranger Navigation & Patrol Intelligence Platform - Field App
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.2.0 <4.0.0'
+  flutter: '>=3.16.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+
+  # IMU & Sensors
+  sensors_plus: ^6.1.1
+
+  # GPS / Location
+  geolocator: ^11.0.0
+  permission_handler: ^11.3.0
+
+  # Offline Storage
+  sqflite: ^2.3.2
+  path: ^1.9.0
+  path_provider: ^2.1.2
+  shared_preferences: ^2.2.2
+
+  # Networking
+  http: ^1.2.1
+  web_socket_channel: ^2.4.4
+  connectivity_plus: ^6.0.3
+
+  # Map Display
+  flutter_map: ^6.1.0
+  latlong2: ^0.9.0
+
+  # State Management
+  provider: ^6.1.2
+
+  # On-Device ML Inference
+  onnxruntime: ^1.4.1
+
+  # Utilities
+  uuid: ^4.3.3
+  wakelock_plus: ^1.2.1
+  flutter_local_notifications: ^17.0.0
+  battery_plus: ^6.0.1
+  intl: ^0.19.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.1
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/models/motion_classifier.onnx
+    - assets/models/universal_speed_estimator.onnx
+    - assets/models/pedestrian_speed_estimator.onnx

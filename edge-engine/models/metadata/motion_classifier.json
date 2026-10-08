@@ -1,0 +1,34 @@
+{
+  "model_name": "motion_classifier.onnx",
+  "model_type": "2-Layer GRU Classifier",
+  "sample_rate_hz": 100,
+  "window_size": 100,
+  "window_duration_s": 1.0,
+  "step_size": 10,
+  "step_duration_s": 0.1,
+  "channels": ["ax", "ay", "az", "gx", "gy", "gz"],
+  "channel_units": {
+    "ax": "m/s^2",
+    "ay": "m/s^2",
+    "az": "m/s^2",
+    "gx": "rad/s",
+    "gy": "rad/s",
+    "gz": "rad/s"
+  },
+  "classes": [
+    { "id": 0, "name": "STATIONARY", "description": "Parked, engine idle, standstill" },
+    { "id": 1, "name": "VEHICLE_CRUISING", "description": "Straight-line driving" },
+    { "id": 2, "name": "VEHICLE_TURNING", "description": "Turning while driving" },
+    { "id": 3, "name": "WALKING", "description": "Foot patrol, pedestrian walking" }
+  ],
+  "class_mapping_note": "Classes 1+2 are merged into VEHICLE by the mobile mode manager",
+  "normalization": {
+    "method": "raw_si_units",
+    "notes": "Direct physical SI units matching PyTorch/ONNX trained weights. Gravity (~9.81 m/s^2) preserved in accelerometer."
+  },
+  "temporal_smoothing": {
+    "rolling_window_predictions": 15,
+    "min_switch_probability": 0.75,
+    "hysteresis_duration_s": 1.5
+  }
+}
